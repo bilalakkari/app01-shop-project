@@ -1,0 +1,75 @@
+<div class="container-fluid pt-5">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span
+            class="bg-secondary pr-3">Categories</span></h2>
+    <div class="row px-xl-5 pb-3">
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1"><a class="text-decoration-none" style="cursor: pointer;"
+                (click)="filter('')">
+                <div class="cat-item d-flex align-items-center mb-4">
+                    <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                        <img class="img-fluid"
+                            src="https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png?q=100" alt="">
+                    </div>
+                    <div class="flex-fill pl-3">
+                        <h6>All products</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1" *ngFor="let categoriesList of categoriesList">
+            <a (click)="filter(this.categoriesList.category_name)" class="text-decoration-none"
+                style="cursor: pointer;">
+                <div class="cat-item d-flex align-items-center mb-4">
+                    <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                        <img class="img-fluid" [src]="categoriesList.category_img" alt="">
+                    </div>
+                    <div class="flex-fill pl-3">
+                        <h6>{{categoriesList.category_name}}</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid pt-5">
+    <div style=" margin-left: 40px;">
+        <button class="btn btn-sm btn-light" (click)="changeGrid()"><i class="fa fa-th-large"></i></button>
+        Change Grid
+    </div>
+</div>
+
+<div class="container-fluid pt-5 pb-3">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Featured
+            Products</span></h2>
+
+    <div class="row px-xl-5" id="parent" *ngIf="filterCategory">
+        <div class="col-lg-3 col-md-4 col-sm-6 pb-1 productCard" *ngFor="let product of filterCategory">
+            <div class=" product-item bg-light mb-4">
+                <div class="product-img position-relative overflow-hidden">
+                    <img class="img-fluid w-100" [src]="product.imgUrl" alt="">
+                    <div class="product-action">
+                        <a class="btn btn-outline-dark btn-square" (click)="post(product)"><i
+                                class="fa fa-shopping-cart"></i></a>
+                        <a class="btn btn-outline-dark btn-square" (click)="wishlish(product)"><i
+                                class="fas fa-heart"></i></a>
+                        <a class="btn btn-outline-dark btn-square"
+                            [routerLink]="['/navbar/home/products', product.product_id]"><i
+                                class="fa fa-info-circle"></i></a>
+                    </div>
+                </div>
+                <div class="text-center py-4">
+                    <a class="h6 text-decoration-none text-truncate"
+                        [routerLink]="['/navbar/home/products', product.product_id]">Product Name:
+                        {{product.title}}</a><br>
+                    <p class="h6 text-decoration-none text-truncate">Category: {{product.category_name}}</p>
+                    <div class="d-flex align-items-center justify-content-center mt-2">
+                        <h5>${{product.price}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="filterCategory.length == 0">
+            No Products
+        </div>
+    </div>
+</div>

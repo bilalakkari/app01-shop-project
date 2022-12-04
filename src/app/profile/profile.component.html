@@ -1,0 +1,83 @@
+<div class="container">
+    <div class="main-body">
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/navbar/home">Home</a></li>
+                <li class="breadcrumb-item"><a style="cursor: pointer;">User</a></li>
+                <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+            </ol>
+        </nav>
+        <div class="row gutters-sm" *ngFor="let user of userData">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <img [src]="user.img" alt="Admin" class="rounded-circle" width="150">
+                            <div class="mt-3">
+                                <h4>{{user.username}}</h4>
+                                <h4>{{user.email}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <form #form="ngForm" [formGroup]="formValue">
+                            <div class="form-floating mb-3">
+                                <label for="inputEmail">User Name</label>
+                                <input class="form-control" id="inputEmail" type="email" placeholder="User Name"
+                                    formControlName="username" required />
+                            </div>
+                            <div class="form-floating mb-3">
+                                <label for="inputPassword">Email</label>
+                                <input class="form-control" id="inputPassword" type="email"
+                                    placeholder="name@example.com" formControlName="email" required />
+                            </div>
+                            <div class=" form-floating mb-3">
+                                <label for="inputPassword">Password</label>
+                                <input formControlName="password" id="password" type="password" class="form-control">
+                                <div *ngIf="f['password'].touched && f['password'].invalid" class="alert alert-danger">
+                                    <div *ngIf="f['password']errors['required']">Password is
+                                        required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <label class="form-label" for="confirm_password">Confirm
+                                    Password</label>
+                                <input formControlName="confirm_password" id="confirm_password" type="password"
+                                    class="form-control">
+                                <div *ngIf="f['confirm_password'].touched && f['confirm_password'].invalid"
+                                    id="password" class="alert alert-danger">
+                                    <div *ngIf="f['confirm_password']errors['required']">Password is
+                                        required.
+                                    </div>
+                                    <div *ngIf="f['confirm_password']errors['confirmedValidator']">
+                                        Password and
+                                        Confirm Password must be
+                                        match.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <div class="img">
+                                    <img [src]=PhotoFilePath alt="avatar" class="rounded-circle img-fluid"
+                                        style="width: 150px;">
+                                    <input type="file" formControlName="img" (change)="uploadPhoto($event)" class="mt-2"
+                                        required />
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <button type="submit" [disabled]="form.invalid" (click)="changeProfile()"
+                                    class="btn btn-dark">Change
+                                    Profile</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

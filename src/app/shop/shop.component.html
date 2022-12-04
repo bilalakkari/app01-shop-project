@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" routerLink="/navbar/home">Home</a>
+                <a class="breadcrumb-item text-dark" style="cursor: pointer;">Shop</a>
+                <span class="breadcrumb-item active">Shop List</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div style=" margin-left: 40px;">
+        <button class="btn btn-sm btn-light" (click)="changeGrid()"><i class="fa fa-th-large"></i></button>
+        Change Grid
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-md-12">
+            <div class="row pb-3">
+                <div class="col-12 pb-1">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div class="ml-2">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 pb-1 productCard"
+                    *ngFor="let product of productsList | filter: searchTerm:'title' | paginate: { itemsPerPage: 6, currentPage: p }">
+                    <div class=" product-item bg-light mb-4">
+                        <div class="product-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100" [src]="product.imgUrl" alt="">
+                            <div class="product-action">
+                                <a class="btn btn-outline-dark btn-square" (click)="post(product)"><i
+                                        class="fa fa-shopping-cart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" (click)="wishlish(product)"><i
+                                        class="fas fa-heart"></i></a>
+                                <a class="btn btn-outline-dark btn-square"
+                                    [routerLink]="['/navbar/home/products', product.product_id]"><i
+                                        class="fa fa-info-circle"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <a class="h6 text-decoration-none text-truncate"
+                                [routerLink]="['/navbar/home/products', product.product_id]">Product Name:
+                                {{product.title}}</a><br>
+                            <p class="h6 text-decoration-none text-truncate">Category: {{product.category_name}}</p>
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                <h5>${{product.price}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="center">
+    <style>
+        /* .my-pagination ::ng-deep .ngx-pagination .current {
+            background: blue;
+        } */
+    </style>
+    <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
+</div>

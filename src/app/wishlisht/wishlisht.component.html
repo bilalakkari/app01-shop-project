@@ -1,0 +1,51 @@
+<ng-container *ngIf="favouriteData !=0 && this.cookie.getCookie('userInfo')">
+    <div class="container-fluid pt-5 pb-3">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Your
+                Wishlist
+            </span></h2>
+        <div class="row px-xl-5">
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1 " *ngFor="let product of favouriteData">
+                <div class="product-item bg-light mb-4">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img-fluid w-100" [src]="product.imgUrl" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" (click)="delete(product)"><i
+                                    class="fas fa-trash"></i></a>
+                            <a class="btn btn-outline-dark btn-square"
+                                [routerLink]="['/navbar/home/products', product.product_id]"><i
+                                    class="fa fa-info-circle"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+                        <a class="h6 text-decoration-none text-truncate">{{product.title}}</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>${{product.price}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="favouriteData ==0 && this.cookie.getCookie('userInfo')">
+    <div class="container">
+        <div class="card">
+            <h5 class="card-title">My wishlist</h5>
+            <div class="center">
+                <img src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"
+                    alt="">
+                <h4>Your wishlist is empty!</h4>
+                <h6>Add item to it now</h6>
+                <button routerLink="/navbar/shop" class="btn btn-primary">Shop Now</button>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="!this.cookie.getCookie('userInfo')">
+    <div style="text-align: center;">
+        <h2>To Use The wishlist. <br> You have to Log In</h2>
+        <button class="btn btn-info" routerLink="/login">Login</button>
+    </div>
+</ng-container>

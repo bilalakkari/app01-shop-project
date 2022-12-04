@@ -1,0 +1,40 @@
+<div style="margin:10px;justify-content: center;display: flex;">
+    <div class="form">
+        <form #form="ngForm" style="margin-top:30px;" [formGroup]="formValue">
+            <div class="form-group">
+                <label>Title</label>
+                <input type="title" formControlName="title" class="form-control" placeholder="Title" required>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input type="description" formControlName="description" class="form-control" placeholder="Description"
+                    required>
+            </div>
+            <div class="form-group">
+                <label>Price</label>
+                <input type="price" formControlName="price" class="form-control" placeholder="Price" required>
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select class="form-select" formControlName="category" required>
+                    <option *ngFor="let c of categoriesList;" value="{{c.category_id}}">{{c.category_name}}
+                    </option>
+                </select>
+            </div>
+            <div class="img">
+                <img [src]=PhotoFilePath alt="avatar" class="rounded-circle img-fluid" style="width: 150px;"><br>
+                <input type="file" formControlName="imgUrl" (change)="uploadPhoto($event)" class="mt-2" required />
+            </div><br>
+            <div class="img">
+                <img [src]=PhotoFilePath2 alt="avatar2" class="rounded-circle img-fluid" style="width: 150px;"><br>
+                <input type="file" formControlName="imgUrl2" (change)="uploadPhoto2($event)" class="mt-2" required />
+            </div><br>
+            <div class="img">
+                <img [src]=PhotoFilePath3 alt="avatar3" class="rounded-circle img-fluid" style="width: 150px;"><br>
+                <input type="file" formControlName="imgUrl3" (change)="uploadPhoto3($event)" class="mt-2" required />
+            </div>
+            <button type="submit" style="margin-top: 10px;" [disabled]="form.invalid" (click)="addProduct()"
+                class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

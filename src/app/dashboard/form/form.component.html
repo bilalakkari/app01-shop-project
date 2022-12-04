@@ -1,0 +1,131 @@
+<div class="row" style="margin: 30px;">
+    <div class="footer">
+        <p>PRODUCTS</p>
+    </div>
+    <div class="col-md-3">
+        <form #form="ngForm" style="margin-top:30px;" [formGroup]="formProduct">
+            <div class="form-group">
+                <label>Title</label>
+                <input type="title" formControlName="title" class="form-control" placeholder="Title" required>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input type="description" formControlName="description" class="form-control" placeholder="Description"
+                    required>
+            </div>
+            <div class="form-group">
+                <label>Price</label>
+                <input type="price" formControlName="price" class="form-control" placeholder="Price" required>
+            </div>
+            <div class="form-group">
+                <label>ImgUrl</label>
+                <input type="imgUrl" formControlName="imgUrl" class="form-control" placeholder="ImgUrl" required>
+            </div>
+            <div class="form-group">
+                <label>ImgUrl2</label>
+                <input type="imgUrl" formControlName="imgUrl2" class="form-control" placeholder="ImgUrl2" required>
+            </div>
+            <div class="form-group">
+                <label>ImgUrl3</label>
+                <input type="imgUrl" formControlName="imgUrl3" class="form-control" placeholder="ImgUrl3" required>
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select class="form-select" formControlName="category_id" required>
+                    <option *ngFor="let p of categoriesList;" value="{{p.category_id}}">{{p.category_name}}</option>
+                </select>
+            </div>
+            <button type="submit" style="margin-top: 10px;" [disabled]="form.invalid" (click)="editProduct()"
+                class="btn btn-primary">Submit</button>
+
+        </form>
+    </div>
+
+    <div class="col-md-9">
+        <div class="input-group" style="margin-top:55px;">
+        </div>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">PRODUCT_ID</th>
+                    <th scope="col">TITLE</th>
+                    <th scope="col">DESCRIPTION</th>
+                    <th scope="col">PRICE</th>
+                    <th scope="col">IMG_URL</th>
+                    <th scope="col">IMG_URL2</th>
+                    <th scope="col">IMG_URL3</th>
+                    <th scope="col">CATEGORY</th>
+                    <th scope="col">ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of productsList">
+                    <td>{{ user.product_id }}</td>
+                    <td>{{ user.title }}</td>
+                    <td>{{ user.description }}</td>
+                    <td>{{ user.price }}</td>
+                    <td><img [src]="user.imgUrl" style="width: 50px;height:50px;"></td>
+                    <td><img [src]="user.imgUrl2" style="width: 50px;height:50px;"></td>
+                    <td><img [src]="user.imgUrl3" style="width: 50px;height:50px;"></td>
+                    <td>{{ user.category_name}}</td>
+                    <td><a (click)="onEditProduct(user)"><i class="fas fa-edit"
+                                style="cursor: pointer;margin-right: 5px;"></i></a>
+                        <a (click)="deleteProduct(user)"> <i class="fa fa-trash" style="cursor: pointer;"
+                                aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="footer" style="margin-top: 10px;">
+        <p>CATEGORIES</p>
+    </div>
+    <div class="col-md-3">
+        <form #formCatefory="ngForm" style="margin-top:30px;" [formGroup]="formCategory">
+            <div class="form-group">
+                <label>CATEGORY_ID</label>
+                <input type="hidden" formControlName="category_id" class="form-control" placeholder="CATEGORY_ID">
+            </div>
+            <div class="form-group">
+                <label>CATEGORY_NAME</label>
+                <input type="category_name" formControlName="category_name" class="form-control"
+                    placeholder="CATEGORY_NAME" required>
+            </div>
+            <div class="form-group">
+                <label>CATEGORY_IMG</label>
+                <input type="category_img" formControlName="category_img" class="form-control"
+                    placeholder="CATEGORY_IMG" required>
+            </div>
+            <button type=" submit" style="margin-top: 10px;" [disabled]="formCatefory.invalid" (click)="editCategory()"
+                class="btn btn-primary">Submit</button>
+
+        </form>
+    </div>
+
+    <div class="col-md-9">
+        <div class="input-group" style="margin-top:55px;">
+        </div>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">CATEGORY_ID</th>
+                    <th scope="col">CATEGORY_NAME</th>
+                    <th scope="col">CATEGORY_IMG</th>
+                    <th scope="col">ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let category of categoriesList">
+                    <td>{{ category.category_id }}</td>
+                    <td>{{ category.category_name }}</td>
+                    <td><img [src]="category.category_img" style=" width: 50px;height:50px;"></td>
+                    <td><a (click)="onEditCategory(category)"><i class="fas fa-edit"
+                                style="cursor: pointer;margin-right: 5px;"></i></a>
+                        <a (click)="deleteCategory(category)"> <i class="fa fa-trash" style="cursor: pointer;"
+                                aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

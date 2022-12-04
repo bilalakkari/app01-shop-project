@@ -1,0 +1,116 @@
+<!-- <div style="margin: 20px;">
+    <form #form="ngForm" [formGroup]="formValue">
+        <div class="mb-3">
+            <label class="form-label">USERNAME</label>
+            <input type="text" formControlName="username" class="form-contol" required>
+            <div *ngIf="f['username'].touched && f['username'].invalid" class="alert alert-danger">
+                <div *ngIf="f['username']errors['required']">username is required.</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">EMAIL</label>
+            <input type="email" formControlName="email" class="form-contol" required>
+            <div *ngIf="f['email'].touched && f['email'].invalid" class="alert alert-danger">
+                <div *ngIf="f['email']errors['required']">Email is required.</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="password">Password</label>
+            <input formControlName="password" id="password" type="password" class="form-control">
+            <div *ngIf="f['password'].touched && f['password'].invalid" class="alert alert-danger">
+                <div *ngIf="f['password']errors['required']">Password is required.</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="confirm_password">Confirm Password</label>
+            <input formControlName="confirm_password" id="confirm_password" type="password" class="form-control">
+            <div *ngIf="f['confirm_password'].touched && f['confirm_password'].invalid" id="password"
+                class="alert alert-danger">
+                <div *ngIf="f['confirm_password']errors['required']">Password is required.</div>
+                <div *ngIf="f['confirm_password']errors['confirmedValidator']">Password and Confirm Password must be
+                    match.
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="img">
+                <img [src]=PhotoFilePath alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                <input type="file" formControlName="img" (change)="uploadPhoto($event)" class="mt-2" required />
+            </div>
+        </div>
+        <button type="submit" [disabled]="form.invalid" (click)="signUp()" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<a routerLink="/login">HAVE AN ACCOUNT ?</a> -->
+
+<div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header">
+                                <h3 class="text-center font-weight-light my-4">Sign Up</h3>
+                            </div>
+                            <div class="card-body">
+                                <form #form="ngForm" [formGroup]="formValue">
+                                    <div class="form-floating mb-3">
+                                        <label for="inputEmail">User Name</label>
+                                        <input class="form-control" id="inputEmail" type="email" placeholder="User Name"
+                                            formControlName="username" required />
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <label for="inputPassword">Email</label>
+                                        <input class="form-control" id="inputPassword" type="email"
+                                            placeholder="name@example.com" formControlName="email" required />
+                                    </div>
+                                    <div class=" form-floating mb-3">
+                                        <label for="inputPassword">Password</label>
+                                        <input formControlName="password" id="password" type="password"
+                                            class="form-control">
+                                        <div *ngIf="f['password'].touched && f['password'].invalid"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f['password']errors['required']">Password is required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <label class="form-label" for="confirm_password">Confirm Password</label>
+                                        <input formControlName="confirm_password" id="confirm_password" type="password"
+                                            class="form-control">
+                                        <div *ngIf="f['confirm_password'].touched && f['confirm_password'].invalid"
+                                            id="password" class="alert alert-danger">
+                                            <div *ngIf="f['confirm_password']errors['required']">Password is required.
+                                            </div>
+                                            <div *ngIf="f['confirm_password']errors['confirmedValidator']">Password and
+                                                Confirm Password must be
+                                                match.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <div class="img">
+                                            <img [src]=PhotoFilePath alt="avatar" class="rounded-circle img-fluid"
+                                                style="width: 150px;">
+                                            <input type="file" formControlName="img" (change)="uploadPhoto($event)"
+                                                class="mt-2" required />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <button type="submit" [disabled]="form.invalid" (click)="signUp()"
+                                            class="btn btn-primary">Sign
+                                            Up</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer text-center py-3">
+                                <a class="small" routerLink="/login">ALREADY HAVE AN ACCOUNT ?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
